@@ -20,16 +20,18 @@
             --bg-white: #ffffff;
             --bg-light: #fafafa;
             --bg-pale: #f8f9fc;
-            --text-dark: #2d2d2d;
-            --text-gray: #666666;
-            --text-light: #999999;
+            --text-dark: #1a1a1a;
+            --text-gray: #4a4a4a;
+            --text-light: #6b6b6b;
         }
         
         body {
             font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-            line-height: 1.8;
+            line-height: 1.7;
             color: var(--text-dark);
             background: var(--bg-white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
@@ -115,6 +117,15 @@
         
         .roi-item {
             text-align: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .roi-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
         
         .roi-number {
@@ -122,6 +133,7 @@
             font-weight: 700;
             margin-bottom: 12px;
             color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .roi-label {
@@ -654,51 +666,196 @@
             text-decoration: underline;
         }
         
-        /* 프로세스 */
-        .process-grid {
-            display: grid;
-            gap: 40px;
-        }
-        
-        .process-item {
+        /* 타임라인 (가로 프로세스) */
+        .timeline-container {
             display: flex;
-            gap: 50px;
+            justify-content: space-between;
             align-items: flex-start;
+            overflow-x: auto;
+            gap: 0;
+            padding: 40px 0;
+            -webkit-overflow-scrolling: touch;
         }
         
-        .process-number {
-            flex-shrink: 0;
-            width: 96px;
-            height: 96px;
+        .timeline-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .timeline-container::-webkit-scrollbar-track {
+            background: rgba(96,159,255,0.1);
+            border-radius: 3px;
+        }
+        
+        .timeline-container::-webkit-scrollbar-thumb {
+            background: var(--dr-blue);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .timeline-number {
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--dr-blue), var(--dr-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 40px;
+            font-size: 28px;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(96,159,255,0.3);
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dr-blue) 0%, var(--dr-purple) 100%);
+            z-index: 1;
+        }
+        
+        .timeline-line-end {
+            width: 50%;
+        }
+        
+        .timeline-item:first-child .timeline-line {
+            left: 50%;
+            width: 50%;
+        }
+        
+        .timeline-content {
+            width: 100%;
+            padding: 0 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .timeline-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+        
+        .timeline-period {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dr-blue);
+            margin-bottom: 6px;
+            white-space: nowrap;
+        }
+        
+        .timeline-desc {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+        
+        /* 프로세스 */
+        .process-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 0;
+            padding: 40px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .process-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .process-grid::-webkit-scrollbar-track {
+            background: rgba(96,159,255,0.1);
+            border-radius: 4px;
+        }
+        
+        .process-grid::-webkit-scrollbar-thumb {
+            background: var(--dr-blue);
+            border-radius: 4px;
+        }
+        
+        .process-item {
+            position: relative;
+            min-width: 280px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .process-item::after {
+            content: '→';
+            position: absolute;
+            right: -8px;
+            top: 48px;
+            font-size: 24px;
+            color: var(--dr-blue);
+            font-weight: 700;
+        }
+        
+        .process-item:last-child::after {
+            display: none;
+        }
+        
+        .process-number {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--dr-blue), var(--dr-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(96,159,255,0.3);
         }
         
         .process-content {
             flex: 1;
             background: var(--bg-white);
-            padding: 50px;
-            border-radius: 24px;
-            border: 1px solid rgba(96, 159, 255, 0.1);
+            padding: 24px;
+            border-radius: 16px;
+            border: 2px solid rgba(96, 159, 255, 0.15);
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
         
         .process-content h3 {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--text-dark);
+            margin-bottom: 12px;
+            color: var(--dr-blue);
+            line-height: 1.4;
         }
         
         .process-content p {
-            font-size: 17px;
+            font-size: 14px;
             color: var(--text-gray);
-            line-height: 1.8;
+            line-height: 1.6;
         }
         
         .process-timeline {
@@ -928,197 +1085,529 @@
             .price-detail-top {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
+            
+            /* 특화 섹션 - 태블릿 */
+            .specialty-banner {
+                padding: 50px 40px !important;
+                gap: 40px !important;
             }
             
+            .specialty-cards {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            
+            .specialty-features {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* 중간 크기 태블릿 (900px 이하) */
+        @media (max-width: 900px) {
+            .specialty-banner {
+                flex-direction: column !important;
+                padding: 40px 32px !important;
+            }
+            
+            .specialty-cards {
+                width: 100% !important;
+            }
+            
+            .specialty-cards > div {
+                padding: 24px 20px !important;
+            }
+        }
+        
+        /* 모바일 768px 이하 */
+        @media (max-width: 768px) {
+            * {
+                -webkit-text-size-adjust: 100%;
+            }
+            
+            body {
+                font-size: 15px !important;
+                line-height: 1.5 !important;
+            }
+            
+            .container {
+                padding: 0 20px !important;
+                max-width: 100% !important;
+            }
+            
+            /* 섹션 간격 - 대폭 축소 */
             section {
-                padding: 60px 0;
+                padding: 30px 0 !important;
             }
             
             .header {
-                padding: 60px 0;
+                padding: 30px 0 !important;
             }
             
+            /* 제목 크기 */
             .header h1 {
-                font-size: 28px;
-                line-height: 1.4;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            .description {
-                font-size: 14px;
+                font-size: 24px !important;
+                line-height: 1.25 !important;
+                margin-bottom: 12px !important;
             }
             
             .section-title {
-                font-size: 26px;
+                font-size: 22px !important;
+                line-height: 1.3 !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .section-header {
+                margin-bottom: 24px !important;
             }
             
             .section-description {
-                font-size: 14px;
+                font-size: 14px !important;
+                line-height: 1.5 !important;
             }
             
+            /* ===== 가격 카드 완전 재구성 ===== */
+            .price-cards-container {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 24px !important;
+                grid-template-columns: 1fr !important;
+            }
+            
+            .price-cards-container > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 20px 16px !important;
+            }
+            
+            /* ===== 특화 섹션 ===== */
+            .specialty-banner {
+                flex-direction: column !important;
+                padding: 24px 20px !important;
+                gap: 20px !important;
+            }
+            
+            .specialty-banner > div:first-of-type {
+                flex: none !important;
+            }
+            
+            .specialty-cards {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+                width: 100% !important;
+                grid-template-columns: 1fr !important;
+            }
+            
+            .specialty-cards > div {
+                width: 100% !important;
+                padding: 24px 20px !important;
+            }
+            
+            .specialty-features {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                grid-template-columns: 1fr !important;
+            }
+            
+            .specialty-features > div {
+                padding: 20px 16px !important;
+            }
+            
+            /* 유지보수 비용 그리드 */
+            .maintenance-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+                grid-template-columns: 1fr !important;
+            }
+            
+            .global-maintenance-grid,
+            .chart-integration-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px !important;
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* 모든 그리드 1열 (ROI 제외) */
             .pain-grid,
             .advantage-grid,
             .benefits-grid,
             .reference-grid,
             .competitive-grid,
             .revenue-grid,
-            .roi-highlight {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            /* 가격 카드 세로 배치 */
-            .price-detail-top {
-                grid-template-columns: 1fr !important;
-                gap: 30px !important;
-            }
-            
-            /* 가격 카드 내부 조정 */
-            .price-detail-top > div {
-                padding: 32px 24px !important;
-                transform: none !important;
-            }
-            
-            /* 스탠다드 가격 박스 - 모바일에서 세로 배치 */
-            .price-detail-top > div:nth-child(2) > div:nth-child(4) > div {
+            .price-detail-top,
+            .feature-list,
+            .company-features {
+                display: flex !important;
                 flex-direction: column !important;
-                gap: 20px !important;
+                gap: 16px !important;
+            }
+            
+            /* ROI는 2x2 그리드 유지 */
+            .roi-highlight {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 16px !important;
+                padding: 32px 24px !important;
+            }
+            
+            .roi-item {
+                padding: 24px 16px !important;
+            }
+            
+            .roi-number {
+                font-size: 36px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .roi-label {
+                font-size: 14px !important;
+            }
+            
+            /* 페이지 구성 예시 - 가로 스크롤 */
+            .page-examples-grid {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                gap: 12px !important;
+                padding-bottom: 12px !important;
+                grid-template-columns: none !important;
+            }
+            
+            .page-examples-grid > div {
+                flex: 0 0 280px !important;
+                min-width: 280px !important;
+                padding: 20px 16px !important;
+                font-size: 14px !important;
+            }
+            
+            .page-examples-grid > div > div:first-child {
+                font-size: 13px !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .page-examples-grid > div > div:last-child {
+                font-size: 14px !important;
+                line-height: 1.6 !important;
+            }
+            
+            /* ===== 타임라인 (모바일) ===== */
+            .timeline-container {
+                flex-wrap: nowrap;
+                justify-content: flex-start !important;
+                gap: 0 !important;
+            }
+            
+            .timeline-item {
+                min-width: 140px !important;
+                flex: 0 0 auto !important;
+            }
+            
+            .timeline-number {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 24px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .timeline-line {
+                top: 25px !important;
+            }
+            
+            .timeline-content h3 {
+                font-size: 14px !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .timeline-period {
+                font-size: 13px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .timeline-desc {
+                font-size: 12px !important;
+            }
+            
+            /* ===== 페이지 구성 예시 - 가로 스크롤 ===== */
+            .page-examples-scroll-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -20px;
+                padding: 0 20px 16px 20px;
+            }
+            
+            .page-examples-scroll-container::-webkit-scrollbar {
+                height: 6px;
+            }
+            
+            .page-examples-scroll-container::-webkit-scrollbar-track {
+                background: rgba(96,159,255,0.1);
+                border-radius: 3px;
+            }
+            
+            .page-examples-scroll-container::-webkit-scrollbar-thumb {
+                background: rgba(96,159,255,0.4);
+                border-radius: 3px;
+            }
+            
+            .page-examples-grid {
+                min-width: 700px !important;
+                grid-template-columns: repeat(4, minmax(160px, 1fr)) !important;
+            }
+            
+            .page-examples-grid > div {
+                padding: 16px !important;
+                font-size: 13px !important;
+            }
+            
+            /* 가격 카드 */
+            .price-detail-top > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 30px 20px !important;
+                box-sizing: border-box !important;
+            }
+            
+            .price-detail-top h3 {
+                font-size: 20px !important;
+                word-wrap: break-word !important;
+            }
+            
+            .price-detail-top p {
+                font-size: 15px !important;
+                word-wrap: break-word !important;
+            }
+            
+            /* 스탠다드 가격 - 세로 배치 */
+            .price-detail-top > div:nth-child(2) > div:nth-child(4) {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            .price-detail-top > div:nth-child(2) > div:nth-child(4) > div {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            .price-detail-top > div:nth-child(2) > div:nth-child(4) > div > div {
+                padding: 20px !important;
+                background: rgba(96,159,255,0.08) !important;
+                border-radius: 12px !important;
+                text-align: center !important;
             }
             
             /* 구분선 숨김 */
+            .price-detail-top > div:nth-child(2) > div:nth-child(4) > div > div[style*="width: 1px"],
             .price-detail-top > div:nth-child(2) > div:nth-child(4) > div > div[style*="height: 50px"] {
                 display: none !important;
             }
             
-            /* 가격 텍스트 크기 조정 */
-            .price-detail-top h3 {
-                font-size: 22px !important;
+            /* 텍스트 크기 */
+            .competitive-card,
+            .pain-card,
+            .advantage-card,
+            .benefit-card {
+                padding: 20px 16px !important;
             }
             
-            .price-detail-top p {
+            /* 프로세스 타임라인 모바일 */
+            .process-grid {
+                padding: 20px 0 !important;
+                margin: 0 -20px !important;
+                padding-left: 20px !important;
+            }
+            
+            .process-item {
+                min-width: 240px !important;
+                padding: 0 16px !important;
+            }
+            
+            .process-number {
+                width: 60px !important;
+                height: 60px !important;
+                font-size: 28px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .process-content {
+                padding: 16px !important;
+                min-height: 160px !important;
+            }
+            
+            .process-content h3 {
                 font-size: 14px !important;
+                margin-bottom: 8px !important;
             }
             
-            .feature-list {
-                grid-template-columns: 1fr;
+            .process-content p {
+                font-size: 13px !important;
+                line-height: 1.5 !important;
             }
             
-            .company-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .company-intro,
+            /* ===== 상담문의 모바일 최적화 ===== */
             .contact-section {
-                padding: 40px 24px;
+                padding: 32px 20px !important;
             }
             
-            .roi-number {
-                font-size: 36px;
+            .contact-section h3 {
+                font-size: 24px !important;
+                margin-bottom: 12px !important;
             }
             
-            .revenue-number {
-                font-size: 42px;
+            .contact-section > p {
+                font-size: 14px !important;
+                margin-bottom: 24px !important;
+                line-height: 1.6 !important;
             }
             
-            /* 테이블 반응형 */
-            table {
-                font-size: 13px;
+            .contact-info {
+                padding: 24px 20px !important;
             }
             
-            table th,
-            table td {
-                padding: 10px 8px !important;
+            .contact-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 6px !important;
+                margin-bottom: 20px !important;
+                font-size: 15px !important;
+                text-align: left !important;
             }
             
-            /* 페이지 구성 예시 - 2열로 */
-            section > div > div:has(> div > div[style*="기본 소개"]) {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 12px !important;
+            .contact-label {
+                min-width: auto !important;
+                text-align: left !important;
+                font-size: 14px !important;
+                font-weight: 600 !important;
+                color: var(--dr-blue) !important;
             }
             
-            /* 프로세스 타임라인 */
-            .process-steps {
-                grid-template-columns: 1fr !important;
+            .contact-item span:last-child {
+                font-size: 15px !important;
+                word-break: keep-all !important;
+                overflow-wrap: break-word !important;
+                width: 100% !important;
+                line-height: 1.6 !important;
             }
             
-            /* 참고 이미지 */
-            .reference-image {
-                height: 200px !important;
-            }
-            
-            /* 로고 크기 조정 */
-            .header-logo {
+            .process-item::after {
+                right: -4px !important;
+                top: 30px !important;
                 font-size: 20px !important;
             }
             
-            /* 상단/하단 로고 */
+            .competitive-card h3,
+            .pain-card h3,
+            .advantage-card h3,
+            .benefit-card h3 {
+                font-size: 18px !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .competitive-card p,
+            .pain-card p,
+            .advantage-card p,
+            .benefit-card p {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* 테이블 스크롤 */
+            table {
+                display: block !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            /* 로고 */
             body > div:first-of-type img,
             body > div:nth-last-of-type(2) img {
-                height: 35px !important;
-            }
-            
-            /* 유지보수 비용 박스 */
-            div[style*="글로벌 홈페이지 유지보수"] > div {
-                grid-template-columns: 1fr !important;
-            }
-            
-            /* 경쟁사 비교 카드 */
-            .competitive-card {
-                padding: 40px 24px !important;
-            }
-            
-            .competitive-badge {
-                right: 24px !important;
-                font-size: 13px !important;
-                padding: 8px 20px !important;
+                height: 36px !important;
             }
         }
         
-        /* 더 작은 화면 (360px 이하) */
+        /* 소형 모바일 480px 이하 */
         @media (max-width: 480px) {
+            body {
+                font-size: 15px !important;
+            }
+            
             .container {
-                padding: 0 16px;
+                padding: 0 16px !important;
+            }
+            
+            section {
+                padding: 24px 0 !important;
+            }
+            
+            .header {
+                padding: 24px 0 !important;
             }
             
             .header h1 {
-                font-size: 24px;
+                font-size: 20px !important;
             }
             
             .section-title {
-                font-size: 22px;
+                font-size: 20px !important;
             }
             
-            /* 가격 숫자 크기 줄이기 */
-            .price-detail-top > div > div:nth-child(3) {
-                font-size: 36px !important;
+            .price-detail-top > div {
+                padding: 24px 16px !important;
             }
             
-            /* ROI 숫자 */
+            .competitive-card,
+            .pain-card,
+            .advantage-card,
+            .benefit-card {
+                padding: 24px 16px !important;
+            }
+            
+            .contact-section {
+                padding: 24px 16px !important;
+            }
+            
+            .contact-section h3 {
+                font-size: 20px !important;
+            }
+            
+            .contact-info {
+                padding: 20px 16px !important;
+            }
+            
+            .contact-item {
+                margin-bottom: 16px !important;
+                font-size: 14px !important;
+            }
+            
+            .contact-label {
+                font-size: 13px !important;
+            }
+            
+            .contact-item span:last-child {
+                font-size: 14px !important;
+            }
+            
+            /* ROI 2x2 유지 - 더 작게 */
+            .roi-highlight {
+                padding: 24px 16px !important;
+                gap: 12px !important;
+            }
+            
+            .roi-item {
+                padding: 20px 12px !important;
+            }
+            
             .roi-number {
-                font-size: 32px;
+                font-size: 32px !important;
             }
             
-            /* 페이지 구성 예시 - 1열로 */
-            section > div > div:has(> div > div[style*="기본 소개"]) {
-                grid-template-columns: 1fr !important;
-            }
-            
-            /* 테이블 더 작게 */
-            table {
-                font-size: 12px;
-            }
-            
-            table th,
-            table td {
-                padding: 8px 6px !important;
+            .roi-label {
+                font-size: 13px !important;
             }
         }
     </style>
@@ -1239,7 +1728,7 @@
             </div>
 
             <!-- 특화 배너 -->
-            <div style="background: linear-gradient(135deg, #609FFF 0%, #9B8CE0 60%, #DEDEEC 100%); border-radius: 28px; padding: 70px 80px; margin-bottom: 60px; display: flex; align-items: center; gap: 60px; position: relative; overflow: hidden;">
+            <div class="specialty-banner" style="background: linear-gradient(135deg, #609FFF 0%, #9B8CE0 60%, #DEDEEC 100%); border-radius: 28px; padding: 70px 80px; margin-bottom: 60px; display: flex; align-items: center; gap: 60px; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; background: rgba(255,255,255,0.06); border-radius: 50%;"></div>
                 <div style="position: absolute; bottom: -40px; right: 160px; width: 180px; height: 180px; background: rgba(255,255,255,0.04); border-radius: 50%;"></div>
                 <div style="flex: 1; color: white; position: relative; z-index: 1;">
@@ -1247,7 +1736,7 @@
                     <h3 style="font-size: 38px; font-weight: 700; line-height: 1.35; margin-bottom: 24px;">피부·성형·쁘띠 전문<br>닥터팔레트가 만드는 홈페이지</h3>
                     <p style="font-size: 18px; opacity: 0.92; line-height: 1.8;">일반 홈페이지 제작사는 병원 시술의 특성을 모릅니다.<br>닥터팔레트 web은 해당 진료과의 시술 구조, 이벤트 운영 방식,<br>환자 유입 패턴을 정확히 이해하고 설계합니다.</p>
                 </div>
-                <div style="flex-shrink: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; position: relative; z-index: 1;">
+                <div class="specialty-cards" style="flex-shrink: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; position: relative; z-index: 1;">
                     <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); border-radius: 18px; padding: 28px 24px; text-align: center; color: white;">
                         <div style="font-size: 36px; margin-bottom: 10px;">🩺</div>
                         <div style="font-size: 15px; font-weight: 600;">피부과</div>
@@ -1264,7 +1753,7 @@
             </div>
 
             <!-- 특화 강점 4가지 -->
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
+            <div class="specialty-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
                 <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.12); border-radius: 20px; padding: 44px 48px; display: flex; gap: 24px; align-items: flex-start; transition: all 0.3s ease;">
                     <div style="flex-shrink: 0; width: 56px; height: 56px; background: linear-gradient(135deg, rgba(96,159,255,0.12), rgba(222,222,236,0.3)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px;">🎯</div>
                     <div>
@@ -1473,7 +1962,7 @@
             </div>
 
             <!-- 상품 카드 2종 - 라이트/스탠다드 -->
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+            <div class="price-cards-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
 
                 <!-- 라이트 패키지 -->
                 <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.15); border-radius: 24px; padding: 48px 40px; position: relative; transition: all 0.3s ease;">
@@ -1586,10 +2075,10 @@
                             <li style="font-size: 15px; color: var(--text-gray); line-height: 1.6;">월 최대 3회 이미지 제작, 작은 페이지 변경건 대응</li>
                         </ul>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="maintenance-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div style="background: white; border-radius: 12px; padding: 24px; border: 1px solid rgba(96,159,255,0.1);">
                             <h5 style="font-size: 17px; font-weight: 600; color: var(--text-dark); margin: 0 0 16px 0;">글로벌 홈페이지 유지보수</h5>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="global-maintenance-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                                 <div style="background: rgba(96,159,255,0.05); padding: 16px; border-radius: 8px;">
                                     <div style="font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px;">라이트 패키지</div>
                                     <div style="font-size: 14px; color: var(--text-gray);">구글 번역기 연동<br><strong style="color: var(--dr-blue);">비용 없음</strong></div>
@@ -1602,7 +2091,7 @@
                         </div>
                         <div style="background: white; border-radius: 12px; padding: 24px; border: 1px solid rgba(96,159,255,0.1);">
                             <h5 style="font-size: 17px; font-weight: 600; color: var(--text-dark); margin: 0 0 16px 0;">차트 시술상품 연동</h5>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="chart-integration-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                                 <div style="background: rgba(96,159,255,0.05); padding: 16px; border-radius: 8px;">
                                     <div style="font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px;">라이트 패키지</div>
                                     <div style="font-size: 14px; color: var(--text-gray);">해당 기능<br><strong style="color: #999;">미제공</strong></div>
@@ -1620,7 +2109,8 @@
             <!-- 페이지 수 안내 -->
             <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.12); border-radius: 20px; padding: 40px 50px;">
                 <h4 style="font-size: 20px; font-weight: 600; color: var(--text-dark); margin-bottom: 24px;">📄 페이지 구성 예시 (스탠다드 기준)</h4>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                <div class="page-examples-scroll-container">
+                    <div class="page-examples-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
                     <div style="background: rgba(96,159,255,0.04); border-radius: 12px; padding: 20px;">
                         <div style="font-size: 13px; font-weight: 600; color: var(--dr-blue); margin-bottom: 10px;">기본 소개 (필수)</div>
                         <div style="font-size: 14px; color: var(--text-gray); line-height: 1.8;">메인 · 의원소개<br>의료진 소개 · 오시는길</div>
@@ -1636,6 +2126,7 @@
                     <div style="background: rgba(96,159,255,0.04); border-radius: 12px; padding: 20px;">
                         <div style="font-size: 13px; font-weight: 600; color: var(--dr-blue); margin-bottom: 10px;">예약 · 상담</div>
                         <div style="font-size: 14px; color: var(--text-gray); line-height: 1.8;">실시간 예약<br>온라인 상담 문의</div>
+                    </div>
                     </div>
                 </div>
                 <p style="margin-top: 20px; font-size: 14px; color: var(--text-light); line-height: 1.7;">* 페이지 수는 병원 규모와 시술 카테고리 수에 따라 유연하게 조정됩니다. 정확한 구성은 상담 후 확정됩니다.</p>
@@ -1719,59 +2210,71 @@
                 <p class="section-description">체계적이고 투명한 프로젝트 진행</p>
             </div>
             
-            <div class="process-grid">
-                <div class="process-item">
-                    <div class="process-number">1</div>
-                    <div class="process-content">
-                        <h3>요구사항 분석 및 기획 (1주)</h3>
-                        <p>병원의 특성, 목표 고객, 필요 기능 등을 면밀히 분석하고 최적의 구조를 설계합니다.</p>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-content">
+                        <h3>요구사항 분석</h3>
+                        <p class="timeline-period">1주</p>
+                        <p class="timeline-desc">병원 특성 및 목표 분석</p>
                     </div>
                 </div>
                 
-                <div class="process-item">
-                    <div class="process-number">2</div>
-                    <div class="process-content">
-                        <h3>디자인 및 콘텐츠 제작 (2~3주)</h3>
-                        <p>병원 브랜드에 맞는 프리미엄 UI/UX 디자인을 제작하고, 필요한 콘텐츠를 정리합니다.</p>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-content">
+                        <h3>디자인 제작</h3>
+                        <p class="timeline-period">2~3주</p>
+                        <p class="timeline-desc">프리미엄 UI/UX 디자인</p>
                     </div>
                 </div>
                 
-                <div class="process-item">
-                    <div class="process-number">3</div>
-                    <div class="process-content">
-                        <h3>개발 및 닥터팔레트 연동 (3~4주)</h3>
-                        <p>웹사이트를 개발하고 닥터팔레트 EMR/CRM 시스템과 API 연동을 진행합니다.</p>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-content">
+                        <h3>개발 및 연동</h3>
+                        <p class="timeline-period">3~4주</p>
+                        <p class="timeline-desc">EMR/CRM API 연동</p>
                     </div>
                 </div>
                 
-                <div class="process-item">
-                    <div class="process-number">4</div>
-                    <div class="process-content">
-                        <h3>테스트 및 품질 검수 (1주)</h3>
-                        <p>예약 연동, 시술 정보 동기화 등 모든 기능을 철저히 테스트하고 보완합니다.</p>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-content">
+                        <h3>테스트 검수</h3>
+                        <p class="timeline-period">1주</p>
+                        <p class="timeline-desc">기능 테스트 및 보완</p>
                     </div>
                 </div>
                 
-                <div class="process-item">
-                    <div class="process-number">5</div>
-                    <div class="process-content">
-                        <h3>오픈 및 교육 (1주)</h3>
-                        <p>사이트를 오픈하고 병원 스태프에게 관리 방법을 교육합니다.</p>
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-content">
+                        <h3>오픈 및 교육</h3>
+                        <p class="timeline-period">1주</p>
+                        <p class="timeline-desc">사이트 오픈 및 교육</p>
                     </div>
                 </div>
                 
-                <div class="process-item">
-                    <div class="process-number">6</div>
-                    <div class="process-content">
-                        <h3>지속적인 유지보수</h3>
-                        <p>오픈 이후에도 안정적인 운영을 위해 지속적으로 모니터링하고 개선합니다.</p>
+                <div class="timeline-item">
+                    <div class="timeline-number">6</div>
+                    <div class="timeline-line timeline-line-end"></div>
+                    <div class="timeline-content">
+                        <h3>유지보수</h3>
+                        <p class="timeline-period">지속</p>
+                        <p class="timeline-desc">정기 관리 및 업데이트</p>
                     </div>
                 </div>
             </div>
             
-            <div class="process-timeline">
-                <h4>총 소요 기간: 약 8~10주</h4>
-                <p>프로젝트 규모에 따라 조정 가능하며, 병원의 일정과 요구사항에 맞춰 유연하게 진행됩니다.</p>
+            <div style="text-align: center; margin-top: 40px; padding: 24px; background: rgba(96,159,255,0.05); border-radius: 16px;">
+                <h4 style="font-size: 18px; font-weight: 600; color: var(--dr-blue); margin-bottom: 8px;">총 소요 기간: 약 8~10주</h4>
+                <p style="color: var(--text-gray); font-size: 14px;">프로젝트 규모에 따라 조정 가능하며, 병원의 일정과 요구사항에 맞춰 유연하게 진행됩니다.</p>
             </div>
         </div>
     </section>
@@ -1827,7 +2330,7 @@
                     </div>
                     <div class="contact-item">
                         <span class="contact-label">이메일</span>
-                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81eae4f7e8efc1f6e4e0f7f3afe2e0f3e4">[email&#160;protected]</a></span>
+                        <span>kevin@weavr.care</span>
                     </div>
                     <div class="contact-item">
                         <span class="contact-label">주소</span>
