@@ -14,6 +14,18 @@
             box-sizing: border-box;
         }
 
+        /* 가로 스크롤 방지 */
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            position: relative;
+        }
+
         :root {
             --dr-blue: #609FFF;
             --dr-purple: #DEDEEC;
@@ -33,12 +45,17 @@
             background: var(--bg-white);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 60px;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         /* 헤더 */
