@@ -1195,6 +1195,38 @@
 
         /* 중간 크기 태블릿 (900px 이하) */
         @media (max-width: 900px) {
+            /* 가격 카드 레이아웃 조정 */
+            .price-cards-container {
+                gap: 30px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .price-cards-container > div {
+                padding: 36px 28px !important;
+            }
+
+            /* 가격 폰트 크기 줄이기 */
+            .price-cards-container > div div[style*="font-size: 40px"] {
+                font-size: 32px !important;
+            }
+
+            .price-cards-container > div div[style*="font-size: 40px"] span[style*="font-size: 18px"] {
+                font-size: 15px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 40px"] {
+                font-size: 32px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 18px"] {
+                font-size: 15px !important;
+            }
+
+            .standard-price-flex {
+                gap: 30px !important;
+            }
+
             .specialty-banner {
                 flex-direction: column !important;
                 padding: 40px 32px !important;
@@ -1652,19 +1684,13 @@
                 max-width: 260px !important;
             }
 
-            /* ===== 가격 카드 - 가로 스크롤 ===== */
+            /* ===== 가격 카드 - 2열 그리드 ===== */
             .price-cards-container {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 20px !important;
-                margin: 0 -20px !important;
+                margin: 0 !important;
                 padding: 0 20px 16px 20px !important;
-                grid-template-columns: none !important;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(96,159,255,0.4) rgba(96,159,255,0.1);
             }
 
             .price-cards-container::-webkit-scrollbar {
@@ -1682,9 +1708,9 @@
             }
 
             .price-cards-container > div {
-                flex: 0 0 300px !important;
-                min-width: 300px !important;
-                max-width: 300px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
                 padding: 24px 20px !important;
             }
 
@@ -1698,25 +1724,25 @@
             }
 
             /* 가격 표시 폰트 크기 줄이기 - 한 줄 표시 */
-            .standard-price-flex span[style*="font-size: 42px"] {
-                font-size: 18px !important;
+            .standard-price-flex span[style*="font-size: 40px"] {
+                font-size: 20px !important;
             }
 
             .standard-price-flex span[style*="font-size: 18px"] {
-                font-size: 10px !important;
+                font-size: 11px !important;
             }
 
             .standard-price-flex span[style*="font-size: 16px"] {
-                font-size: 9px !important;
+                font-size: 10px !important;
             }
 
             /* 라이트 패키지 가격 폰트도 줄이기 */
-            .price-cards-container > div div[style*="font-size: 42px"] {
-                font-size: 18px !important;
+            .price-cards-container > div div[style*="font-size: 40px"] {
+                font-size: 20px !important;
             }
 
-            .price-cards-container > div div[style*="font-size: 42px"] span[style*="font-size: 18px"] {
-                font-size: 10px !important;
+            .price-cards-container > div div[style*="font-size: 40px"] span[style*="font-size: 18px"] {
+                font-size: 11px !important;
             }
 
             /* 가격 영역 min-height 통일 */
@@ -2533,25 +2559,25 @@
                 min-height: auto !important;
             }
 
-            .standard-price-flex span[style*="font-size: 42px"] {
-                font-size: 12px !important;
+            .standard-price-flex span[style*="font-size: 40px"] {
+                font-size: 13px !important;
             }
 
             .standard-price-flex span[style*="font-size: 18px"] {
-                font-size: 7px !important;
+                font-size: 8px !important;
             }
 
             .standard-price-flex span[style*="font-size: 16px"] {
-                font-size: 6px !important;
+                font-size: 7px !important;
             }
 
             /* 라이트 패키지 가격 폰트도 더 작게 */
-            .price-cards-container > div div[style*="font-size: 42px"] {
-                font-size: 12px !important;
+            .price-cards-container > div div[style*="font-size: 40px"] {
+                font-size: 13px !important;
             }
 
-            .price-cards-container > div div[style*="font-size: 42px"] span[style*="font-size: 18px"] {
-                font-size: 7px !important;
+            .price-cards-container > div div[style*="font-size: 40px"] span[style*="font-size: 18px"] {
+                font-size: 8px !important;
             }
 
             /* 가격 영역 min-height */
@@ -2921,7 +2947,7 @@
             </div>
 
             <!-- 상품 카드 2종 - 라이트/스탠다드 -->
-            <div class="price-cards-container" style="display: grid; gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+            <div class="price-cards-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
 
                 <!-- 라이트 패키지 -->
                 <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.15); border-radius: 24px; padding: 48px 40px; position: relative; transition: all 0.3s ease;">
@@ -2932,7 +2958,7 @@
                         <span style="font-size: 13px; color: var(--text-light);">구축비 (1회성)</span>
                     </div>
                     <div style="text-align: center; margin-bottom: 6px; min-height: 100px; display: flex; flex-direction: column; justify-content: center;">
-                        <div style="font-size: 42px; font-weight: 700; color: var(--text-dark); line-height: 1;">600<span style="font-size: 18px; font-weight: 500; color: var(--text-gray);">만원</span></div>
+                        <div style="font-size: 40px; font-weight: 700; color: var(--text-dark); line-height: 1;">600<span style="font-size: 18px; font-weight: 500; color: var(--text-gray);">만원</span></div>
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">한국어 기준</div>
                     </div>
                     <div style="font-size: 13px; color: var(--text-light); margin-bottom: 32px; text-align: right;">VAT 별도</div>
@@ -2973,10 +2999,10 @@
                     <div style="margin-bottom: 8px; text-align: center;">
                         <span style="font-size: 13px; color: var(--text-light);">구축비 (1회성)</span>
                     </div>
-                    <div class="standard-price-flex" style="display: flex; align-items: baseline; justify-content: center; gap: 60px; margin-bottom: 6px; min-height: 100px;">
+                    <div class="standard-price-flex" style="display: flex; align-items: baseline; justify-content: center; gap: 40px; margin-bottom: 6px; min-height: 100px;">
                         <div style="text-align: center;">
                             <div style="display: flex; align-items: baseline; justify-content: center; gap: 6px;">
-                                <span style="font-size: 42px; font-weight: 700; background: linear-gradient(135deg, var(--dr-blue), #9B8CE0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; white-space: nowrap;">30<span style="font-size: 18px;">만원</span></span>
+                                <span style="font-size: 40px; font-weight: 700; background: linear-gradient(135deg, var(--dr-blue), #9B8CE0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; white-space: nowrap;">30<span style="font-size: 18px;">만원</span></span>
                                 <span style="font-size: 16px; color: var(--text-gray); font-weight: 500; white-space: nowrap;">/ 페이지</span>
                             </div>
                             <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">한국어</div>
@@ -2984,7 +3010,7 @@
                         <div class="price-divider" style="height: 50px; width: 1px; background: rgba(96,159,255,0.2); align-self: center;"></div>
                         <div style="text-align: center;">
                             <div style="display: flex; align-items: baseline; justify-content: center; gap: 6px;">
-                                <span style="font-size: 42px; font-weight: 700; background: linear-gradient(135deg, var(--dr-blue), #9B8CE0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; white-space: nowrap;">10<span style="font-size: 18px;">만원</span></span>
+                                <span style="font-size: 40px; font-weight: 700; background: linear-gradient(135deg, var(--dr-blue), #9B8CE0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; white-space: nowrap;">10<span style="font-size: 18px;">만원</span></span>
                                 <span style="font-size: 16px; color: var(--text-gray); font-weight: 500; white-space: nowrap;">/ 페이지</span>
                             </div>
                             <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">언어별</div>
