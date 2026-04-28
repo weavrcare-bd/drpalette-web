@@ -1128,6 +1128,11 @@
             margin-right: 10px;
         }
 
+        /* 가격 카드 기본 레이아웃 (데스크톱) */
+        .price-cards-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         /* 반응형 */
         @media (max-width: 1200px) {
             .advantage-grid,
@@ -1177,13 +1182,6 @@
 
             .specialty-cards > div {
                 padding: 24px 20px !important;
-            }
-
-            /* 가격 카드 1열로 전환 */
-            .price-cards-container {
-                grid-template-columns: 1fr !important;
-                gap: 32px !important;
-                max-width: 600px !important;
             }
         }
 
@@ -1328,14 +1326,17 @@
                 padding: 28px 24px !important;
             }
 
-            /* 가격 카드 상단 여백 확보 (배지 공간) */
+            /* 가격 카드 상단 여백 확보 및 크기 조정 */
             .price-cards-container {
-                grid-template-columns: 1fr !important;
-                gap: 30px !important;
+                gap: 24px !important;
                 padding-top: 28px !important;
-                max-width: 600px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            /* 가격 카드 개별 크기 조정 */
+            .price-cards-container > div {
+                padding: 40px 24px 32px 24px !important;
             }
 
             /* 가격 정보 영역 높이 자동 조정 */
@@ -1344,9 +1345,20 @@
             }
 
             .popular-badge {
-                top: 10px !important;
-                font-size: 13px !important;
-                padding: 8px 24px !important;
+                top: -15px !important;
+                font-size: 11px !important;
+                padding: 6px 18px !important;
+            }
+
+            /* 스탠다드 카드 overflow visible (배지가 보이도록) */
+            .price-cards-container > div[style*="transform: translateY"] {
+                transform: translateY(0) !important;
+                overflow: visible !important;
+            }
+
+            /* 모든 가격 카드 overflow visible */
+            .price-cards-container > div {
+                overflow: visible !important;
             }
 
             /* 경쟁력 비교 배지 & 여백 */
@@ -1529,19 +1541,45 @@
                 padding: 24px 20px !important;
             }
 
-            /* 스탠다드 패키지 가격 레이아웃 - 모바일 */
+            /* 스탠다드 패키지 가격 레이아웃 - 가로 한 줄 */
             .standard-price-flex {
-                flex-direction: column !important;
+                flex-direction: row !important;
                 gap: 20px !important;
                 align-items: center !important;
+                justify-content: center !important;
                 min-height: auto !important;
             }
 
+            /* 가격 표시 폰트 크기 줄이기 - 한 줄 표시 */
+            .standard-price-flex span[style*="font-size: 42px"] {
+                font-size: 18px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 18px"] {
+                font-size: 10px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 16px"] {
+                font-size: 9px !important;
+            }
+
+            /* 라이트 패키지 가격 폰트도 줄이기 */
+            .price-cards-container > div div[style*="font-size: 42px"] {
+                font-size: 18px !important;
+            }
+
+            .price-cards-container > div div[style*="font-size: 42px"] span[style*="font-size: 18px"] {
+                font-size: 10px !important;
+            }
+
+            /* 가격 영역 min-height 통일 */
+            .standard-price-flex,
+            .price-cards-container > div div[style*="min-height: 100px"] {
+                min-height: 60px !important;
+            }
+
             .price-divider {
-                width: 80px !important;
-                height: 1px !important;
-                background: rgba(96,159,255,0.15) !important;
-                margin: 0 auto !important;
+                display: none !important;
             }
 
             /* ===== 특화 섹션 ===== */
@@ -2000,8 +2038,9 @@
 
         /* 소형 모바일 480px 이하 */
         @media (max-width: 480px) {
+            /* 기본 폰트 크기 조정 */
             body {
-                font-size: 14px !important;
+                font-size: 13px !important;
             }
 
             .container {
@@ -2020,13 +2059,20 @@
             .header h1,
             h2,
             .section-title {
-                font-size: 22px !important;
+                font-size: 20px !important;
             }
 
             /* 중제목 더 작게 */
             h3,
             h4 {
-                font-size: 17px !important;
+                font-size: 16px !important;
+            }
+
+            /* 본문 텍스트 */
+            p,
+            .section-description,
+            div {
+                font-size: 13px !important;
             }
 
             /* 가로 스크롤 카드들 - 더 작게 */
@@ -2066,26 +2112,28 @@
             }
 
             .popular-badge {
-                top: 10px !important;
-                font-size: 12px !important;
-                padding: 6px 20px !important;
+                top: 12px !important;
+                font-size: 11px !important;
+                padding: 5px 18px !important;
             }
 
             .competitive-badge {
-                top: 10px !important;
-                font-size: 12px !important;
-                padding: 6px 20px !important;
+                top: 12px !important;
+                font-size: 11px !important;
+                padding: 5px 18px !important;
             }
 
             .price-cards-container {
+                grid-template-columns: 1fr !important;
                 gap: 24px !important;
                 padding: 28px 16px 0 16px !important;
+                max-width: 500px !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
             }
 
             .price-cards-container > div {
-                padding: 40px 20px !important;
+                padding: 36px 20px 28px 20px !important;
             }
 
             .price-detail-top > div {
@@ -2165,8 +2213,50 @@
                 min-height: auto !important;
             }
 
+            /* 가격 표시 - 480px에서도 가로 한 줄 */
+            .standard-price-flex {
+                flex-direction: row !important;
+                gap: 12px !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: auto !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 42px"] {
+                font-size: 14px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 18px"] {
+                font-size: 8px !important;
+            }
+
+            .standard-price-flex span[style*="font-size: 16px"] {
+                font-size: 7px !important;
+            }
+
+            /* 라이트 패키지 가격 폰트도 더 작게 */
+            .price-cards-container > div div[style*="font-size: 42px"] {
+                font-size: 14px !important;
+            }
+
+            .price-cards-container > div div[style*="font-size: 42px"] span[style*="font-size: 18px"] {
+                font-size: 9px !important;
+            }
+
+            /* 가격 영역 min-height */
+            .price-cards-container > div div[style*="min-height: 100px"] {
+                min-height: 60px !important;
+            }
+
             .price-divider {
-                width: 60px !important;
+                display: none !important;
+            }
+
+            /* 배지 위치 */
+            .popular-badge {
+                top: -12px !important;
+                font-size: 10px !important;
+                padding: 5px 16px !important;
             }
 
             /* 유지보수 섹션 타이틀 크기 */
@@ -2431,7 +2521,7 @@
             </div>
 
             <!-- 상품 카드 2종 - 라이트/스탠다드 -->
-            <div class="price-cards-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+            <div class="price-cards-container" style="display: grid; gap: 40px; margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
 
                 <!-- 라이트 패키지 -->
                 <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.15); border-radius: 24px; padding: 48px 40px; position: relative; transition: all 0.3s ease;">
@@ -2475,7 +2565,7 @@
                 </div>
 
                 <!-- 스탠다드 패키지 (추천) -->
-                <div style="background: var(--bg-white); border: 2px solid var(--dr-blue); border-radius: 24px; padding: 60px 40px 48px 40px; position: relative; box-shadow: 0 20px 60px rgba(96,159,255,0.15); transform: translateY(-8px);">
+                <div style="background: var(--bg-white); border: 1px solid var(--dr-blue); border-radius: 24px; padding: 48px 40px; position: relative; box-shadow: 0 20px 60px rgba(96,159,255,0.15);">
                     <div class="popular-badge">가장 많이 선택</div>
                     <div style="font-size: 13px; font-weight: 600; color: var(--dr-blue); letter-spacing: 2px; margin-bottom: 16px;">STANDARD</div>
                     <h3 style="font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">스탠다드 패키지</h3>
