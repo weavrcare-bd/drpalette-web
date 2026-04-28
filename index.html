@@ -1032,8 +1032,31 @@
         /* 경쟁사 비교 */
         .competitive-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: minmax(350px, 400px) minmax(520px, 640px);
             gap: 50px;
+            justify-content: center;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(96,159,255,0.4) rgba(96,159,255,0.1);
+        }
+
+        .competitive-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .competitive-grid::-webkit-scrollbar-track {
+            background: rgba(96,159,255,0.1);
+            border-radius: 4px;
+        }
+
+        .competitive-grid::-webkit-scrollbar-thumb {
+            background: rgba(96,159,255,0.4);
+            border-radius: 4px;
+        }
+
+        .competitive-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(96,159,255,0.6);
         }
 
         .competitive-card {
@@ -1082,6 +1105,7 @@
             font-weight: 600;
             margin-bottom: 32px;
             color: var(--text-dark);
+            white-space: nowrap;
         }
 
         .competitive-list {
@@ -1463,10 +1487,17 @@
                 border-radius: 3px;
             }
 
-            .competitive-grid > div {
-                flex: 0 0 320px !important;
-                min-width: 320px !important;
-                max-width: 320px !important;
+            .competitive-grid > div:first-child {
+                flex: 0 0 330px !important;
+                min-width: 330px !important;
+                max-width: 330px !important;
+                padding: 28px 24px !important;
+            }
+
+            .competitive-grid > div:last-child {
+                flex: 0 0 420px !important;
+                min-width: 420px !important;
+                max-width: 420px !important;
                 padding: 28px 24px !important;
             }
 
@@ -3053,7 +3084,7 @@
                     <div style="background: white; border-radius: 12px; padding: 24px; border: 1px solid rgba(96,159,255,0.1);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                             <h5 style="font-size: 17px; font-weight: 600; color: var(--text-dark); margin: 0;">국문 홈페이지</h5>
-                            <span style="font-size: 20px; font-weight: 700; color: var(--dr-blue);">50만원</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--dr-blue);">50만원</span>
                         </div>
                         <ul style="margin: 0; padding-left: 20px; display: grid; gap: 6px;">
                             <li style="font-size: 14px; color: var(--text-gray); line-height: 1.6;">도메인, 웹 서버 호스팅, SSL보안인증서 설치</li>
