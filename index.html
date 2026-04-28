@@ -1014,20 +1014,20 @@
 
         .competitive-card {
             background: var(--bg-white);
-            padding: 72px 60px 60px 60px;
+            padding: 60px 60px;
             border-radius: 24px;
             border: 1px solid rgba(96, 159, 255, 0.1);
             position: relative;
         }
 
         .competitive-card.highlight {
-            border: 2px solid var(--dr-blue);
+            border: 1px solid var(--dr-blue);
             box-shadow: 0 20px 60px rgba(96, 159, 255, 0.15);
         }
 
         .competitive-badge {
             position: absolute;
-            top: -22px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, var(--dr-blue), var(--dr-purple));
@@ -1279,16 +1279,74 @@
             .pain-grid,
             .advantage-grid,
             .benefits-grid {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                gap: 16px !important;
-                margin: 0 -20px !important;
-                padding: 0 20px 16px 20px !important;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(96,159,255,0.4) rgba(96,159,255,0.1);
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* pain 카드 크기 축소 */
+            .pain-card {
+                padding: 32px 24px !important;
+            }
+
+            .pain-icon {
+                width: 56px !important;
+                height: 56px !important;
+                font-size: 24px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .pain-card h3 {
+                font-size: 18px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .pain-card p {
+                font-size: 13px !important;
+                line-height: 1.6 !important;
+            }
+
+            /* advantage 카드 크기 축소 */
+            .advantage-card {
+                padding: 32px 24px !important;
+            }
+
+            .advantage-number {
+                font-size: 48px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .advantage-card h3 {
+                font-size: 18px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .advantage-card p {
+                font-size: 13px !important;
+                line-height: 1.6 !important;
+            }
+
+            .benefit-card {
+                padding: 32px 24px !important;
+            }
+
+            .benefit-icon {
+                width: 64px !important;
+                height: 64px !important;
+                font-size: 32px !important;
+                margin: 0 auto 16px !important;
+            }
+
+            .benefit-card h3 {
+                font-size: 16px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .benefit-card p {
+                font-size: 13px !important;
+                line-height: 1.6 !important;
             }
 
             /* ===== 경쟁력 비교 - 가로 스크롤 ===== */
@@ -1418,27 +1476,65 @@
 
             /* 프로덕트 그리드 - 세로 배치 */
             .product-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 24px !important;
-                grid-template-columns: 1fr !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
             }
 
-            /* 공동대표 그리드 - 세로 배치 */
+            /* 프로덕트 섹션 상위 컨테이너 */
+            .product-grid::before {
+                content: none;
+            }
+
+            /* 프로덕트 카드 패딩 및 폰트 조정 - 훨씬 더 가로로 길게 */
+            .product-grid > div > div {
+                padding: 16px 32px !important;
+            }
+
+            .product-grid > div > div > div:first-child {
+                margin-bottom: 10px !important;
+            }
+
+            .product-grid h4 {
+                font-size: 22px !important;
+                margin-bottom: 14px !important;
+            }
+
+            .product-grid p {
+                font-size: 14px !important;
+                line-height: 1.4 !important;
+                margin-bottom: 14px !important;
+            }
+
+            .product-grid a {
+                font-size: 13px !important;
+            }
+
+            /* 공동대표 그리드 - 가로 배치 */
             .founders-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 40px !important;
-                grid-template-columns: 1fr !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 24px !important;
             }
 
             /* 대표 메시지 그리드 - 세로 배치 */
             .ceo-messages-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 20px !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 16px !important;
                 margin-top: 40px !important;
-                grid-template-columns: 1fr !important;
+            }
+
+            /* 페이지 구성 예시 - 2열로 변경 */
+            .page-examples-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+
+            /* 회사 영향력 - 2열로 변경 */
+            .company-impact-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
             }
 
             .pain-grid::-webkit-scrollbar,
@@ -1594,39 +1690,26 @@
             }
 
             .specialty-cards {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                gap: 16px !important;
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 12px !important;
                 width: 100% !important;
-                grid-template-columns: none !important;
-                margin: 0 -20px !important;
-                padding: 0 20px 12px 20px !important;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(96,159,255,0.4) rgba(96,159,255,0.1);
-            }
-
-            .specialty-cards::-webkit-scrollbar {
-                height: 6px;
-            }
-
-            .specialty-cards::-webkit-scrollbar-track {
-                background: rgba(96,159,255,0.1);
-                border-radius: 3px;
-            }
-
-            .specialty-cards::-webkit-scrollbar-thumb {
-                background: rgba(96,159,255,0.4);
-                border-radius: 3px;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             .specialty-cards > div {
-                flex: 0 0 180px !important;
-                min-width: 180px !important;
-                max-width: 180px !important;
-                padding: 20px 16px !important;
+                padding: 16px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .specialty-cards > div > div:first-child {
+                font-size: 28px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .specialty-cards > div > div:last-child {
+                font-size: 12px !important;
             }
 
             .specialty-features {
@@ -1640,42 +1723,38 @@
                 padding: 20px 18px !important;
             }
 
-            /* ===== 유지보수 비용 그리드 - 모바일 세로 배치 ===== */
+            /* ===== 유지보수 비용 그리드 - 가로 배치 ===== */
             .maintenance-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 20px !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(250px, 1fr)) !important;
+                gap: 16px !important;
                 overflow-x: visible !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                grid-template-columns: 1fr !important;
             }
 
             .maintenance-grid > div {
                 width: 100% !important;
                 max-width: 100% !important;
-                min-width: auto !important;
-                flex: none !important;
+                min-width: 250px !important;
             }
 
             .global-maintenance-grid,
             .chart-integration-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 12px !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(95px, 1fr)) !important;
+                gap: 8px !important;
                 overflow-x: visible !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                grid-template-columns: 1fr !important;
             }
 
             .global-maintenance-grid > div,
             .chart-integration-grid > div {
                 width: 100% !important;
                 max-width: 100% !important;
-                min-width: auto !important;
-                flex: none !important;
-                padding: 18px 16px !important;
+                min-width: 95px !important;
+                padding: 14px 10px !important;
             }
 
             /* ===== Revenue 그리드 - 가로 스크롤 ===== */
@@ -2028,6 +2107,41 @@
                 border-radius: 3px;
             }
 
+            /* ===== 경쟁력 비교 텍스트 축소 ===== */
+            .competitive-item {
+                font-size: 12px !important;
+                padding: 8px 10px !important;
+                line-height: 1.5 !important;
+            }
+
+            .competitive-card.highlight .competitive-item.highlight-strong {
+                padding: 10px 12px 10px 14px !important;
+                font-size: 12px !important;
+            }
+
+            .competitive-item::before {
+                margin-right: 8px !important;
+                font-size: 14px !important;
+            }
+
+            /* ===== 전역 상위 컨테이너 padding 조정 ===== */
+            /* 모든 섹션 상위 컨테이너의 padding을 줄여서 내부 요소가 벗어나지 않도록 */
+            div[style*="padding: 80px 60px"],
+            div[style*="padding: 80px"],
+            div[style*="padding: 60px"] {
+                padding: 40px 30px !important;
+            }
+
+            div[style*="padding: 50px 60px"],
+            div[style*="padding: 50px 40px"] {
+                padding: 36px 28px !important;
+            }
+
+            div[style*="padding: 40px 50px"],
+            div[style*="padding: 35px 40px"] {
+                padding: 32px 24px !important;
+            }
+
             /* ===== 로고 크기 ===== */
             body > div:first-of-type img,
             body > div:nth-last-of-type(2) img {
@@ -2059,30 +2173,102 @@
             .header h1,
             h2,
             .section-title {
-                font-size: 20px !important;
+                font-size: 18px !important;
             }
 
             /* 중제목 더 작게 */
             h3,
             h4 {
-                font-size: 16px !important;
+                font-size: 14px !important;
             }
 
             /* 본문 텍스트 */
             p,
             .section-description,
             div {
-                font-size: 13px !important;
+                font-size: 11px !important;
             }
 
             /* 가로 스크롤 카드들 - 더 작게 */
-            .pain-grid > div,
-            .advantage-grid > div,
-            .benefits-grid > div {
-                flex: 0 0 260px !important;
-                min-width: 260px !important;
-                max-width: 260px !important;
-                padding: 18px 16px !important;
+            .pain-grid,
+            .advantage-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .benefits-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* pain 카드 더 작게 */
+            .pain-card {
+                padding: 20px 16px !important;
+            }
+
+            .pain-icon {
+                width: 42px !important;
+                height: 42px !important;
+                font-size: 18px !important;
+                margin-bottom: 10px !important;
+                border-radius: 12px !important;
+            }
+
+            .pain-card h3 {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .pain-card p {
+                font-size: 10px !important;
+                line-height: 1.5 !important;
+            }
+
+            /* advantage 카드 더 작게 */
+            .advantage-card {
+                padding: 20px 16px !important;
+            }
+
+            .advantage-number {
+                font-size: 36px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .advantage-card h3 {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .advantage-card p {
+                font-size: 10px !important;
+                line-height: 1.5 !important;
+            }
+
+            .benefit-card {
+                padding: 20px 12px !important;
+            }
+
+            .benefit-icon {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 24px !important;
+                margin: 0 auto 10px !important;
+            }
+
+            .benefit-card h3 {
+                font-size: 13px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .benefit-card p {
+                font-size: 10px !important;
+                line-height: 1.5 !important;
             }
 
             .reference-grid > div {
@@ -2100,7 +2286,7 @@
             }
 
             .company-vision {
-                font-size: 22px !important;
+                font-size: 18px !important;
             }
 
             /* 경쟁력 비교 카드 더 작게 */
@@ -2112,28 +2298,113 @@
             }
 
             .popular-badge {
-                top: 12px !important;
-                font-size: 11px !important;
-                padding: 5px 18px !important;
+                top: -10px !important;
+                font-size: 9px !important;
+                padding: 4px 12px !important;
             }
 
             .competitive-badge {
-                top: 12px !important;
+                top: -10px !important;
+                font-size: 9px !important;
+                padding: 4px 12px !important;
+            }
+
+            /* 경쟁력 비교 텍스트 더 축소 */
+            .competitive-item {
+                font-size: 10px !important;
+                padding: 6px 8px !important;
+                line-height: 1.4 !important;
+            }
+
+            .competitive-card.highlight .competitive-item.highlight-strong {
+                padding: 8px 10px 8px 12px !important;
+                font-size: 10px !important;
+            }
+
+            .competitive-item::before {
+                margin-right: 6px !important;
+                font-size: 12px !important;
+            }
+
+            .competitive-card h3 {
+                font-size: 14px !important;
+                margin-bottom: 12px !important;
+            }
+
+            /* specialty 카드 더 작게 */
+            .specialty-banner {
+                padding: 20px 12px !important;
+                gap: 16px !important;
+            }
+
+            .specialty-cards {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 8px !important;
+            }
+
+            .specialty-cards > div {
+                padding: 12px 8px !important;
+                border-radius: 12px !important;
+            }
+
+            .specialty-cards > div > div:first-child {
+                font-size: 20px !important;
+                margin-bottom: 4px !important;
+            }
+
+            .specialty-cards > div > div:last-child {
+                font-size: 10px !important;
+            }
+
+            .specialty-banner > div:first-of-type h3 {
+                font-size: 20px !important;
+                line-height: 1.4 !important;
+                margin-bottom: 12px !important;
+            }
+
+            .specialty-banner > div:first-of-type p {
                 font-size: 11px !important;
-                padding: 5px 18px !important;
+                line-height: 1.6 !important;
+            }
+
+            .specialty-banner > div:first-of-type > div:first-child {
+                font-size: 10px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .specialty-features > div {
+                padding: 16px 12px !important;
+                gap: 12px !important;
+            }
+
+            .specialty-features > div > div:first-child {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 20px !important;
+            }
+
+            .specialty-features > div h4 {
+                font-size: 16px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .specialty-features > div p {
+                font-size: 11px !important;
+                line-height: 1.6 !important;
             }
 
             .price-cards-container {
-                grid-template-columns: 1fr !important;
-                gap: 24px !important;
-                padding: 28px 16px 0 16px !important;
-                max-width: 500px !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 24px 8px 0 8px !important;
+                max-width: 100% !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
             }
 
             .price-cards-container > div {
-                padding: 36px 20px 28px 20px !important;
+                padding: 24px 12px 16px 12px !important;
             }
 
             .price-detail-top > div {
@@ -2169,7 +2440,7 @@
             }
 
             .contact-section h3 {
-                font-size: 20px !important;
+                font-size: 18px !important;
             }
 
             .contact-info {
@@ -2177,16 +2448,16 @@
             }
 
             .contact-item {
-                margin-bottom: 16px !important;
-                font-size: 14px !important;
+                margin-bottom: 12px !important;
+                font-size: 11px !important;
             }
 
             .contact-label {
-                font-size: 13px !important;
+                font-size: 10px !important;
             }
 
             .contact-item span:last-child {
-                font-size: 14px !important;
+                font-size: 11px !important;
             }
 
             /* ROI 2x2 유지 - 더 작게 */
@@ -2200,11 +2471,11 @@
             }
 
             .roi-number {
-                font-size: 32px !important;
+                font-size: 28px !important;
             }
 
             .roi-label {
-                font-size: 13px !important;
+                font-size: 10px !important;
             }
 
             /* 스탠다드 가격 레이아웃 - 더 작은 화면 */
@@ -2223,24 +2494,24 @@
             }
 
             .standard-price-flex span[style*="font-size: 42px"] {
-                font-size: 14px !important;
+                font-size: 12px !important;
             }
 
             .standard-price-flex span[style*="font-size: 18px"] {
-                font-size: 8px !important;
+                font-size: 7px !important;
             }
 
             .standard-price-flex span[style*="font-size: 16px"] {
-                font-size: 7px !important;
+                font-size: 6px !important;
             }
 
             /* 라이트 패키지 가격 폰트도 더 작게 */
             .price-cards-container > div div[style*="font-size: 42px"] {
-                font-size: 14px !important;
+                font-size: 12px !important;
             }
 
             .price-cards-container > div div[style*="font-size: 42px"] span[style*="font-size: 18px"] {
-                font-size: 9px !important;
+                font-size: 7px !important;
             }
 
             /* 가격 영역 min-height */
@@ -2259,9 +2530,80 @@
                 padding: 5px 16px !important;
             }
 
+            /* 프로덕트 섹션 480px - 훨씬 더 가로로 길게 */
+            .product-grid {
+                gap: 12px !important;
+            }
+
+            .product-grid > div > div {
+                padding: 12px 28px !important;
+            }
+
+            .product-grid > div > div > div:first-child {
+                margin-bottom: 8px !important;
+            }
+
+            .product-grid h4 {
+                font-size: 18px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .product-grid p {
+                font-size: 12px !important;
+                line-height: 1.3 !important;
+                margin-bottom: 10px !important;
+            }
+
+            .product-grid a {
+                font-size: 11px !important;
+            }
+
+            /* ===== 전역 상위 컨테이너 padding 조정 (480px) ===== */
+            /* 모든 섹션 상위 컨테이너의 padding을 더 줄여서 내부 요소가 벗어나지 않도록 */
+            div[style*="padding: 80px 60px"],
+            div[style*="padding: 80px"],
+            div[style*="padding: 60px"],
+            div[style*="padding: 40px 30px"] {
+                padding: 32px 20px !important;
+            }
+
+            div[style*="padding: 50px 60px"],
+            div[style*="padding: 50px 40px"],
+            div[style*="padding: 36px 28px"] {
+                padding: 28px 18px !important;
+            }
+
+            div[style*="padding: 40px 50px"],
+            div[style*="padding: 35px 40px"],
+            div[style*="padding: 32px 24px"] {
+                padding: 24px 16px !important;
+            }
+
             /* 유지보수 섹션 타이틀 크기 */
             .maintenance-grid h5 {
                 font-size: 16px !important;
+            }
+
+            /* 페이지 구성 예시 - 1열로 변경 */
+            .page-examples-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+
+            /* 회사 영향력 - 1열로 변경 */
+            .company-impact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+
+            /* Co-founders - gap 축소 */
+            .founders-grid {
+                gap: 16px !important;
+            }
+
+            /* CEO 메시지 - gap 축소 */
+            .ceo-messages-grid {
+                gap: 12px !important;
             }
         }
     </style>
@@ -2630,8 +2972,8 @@
                             <span style="font-size: 20px; font-weight: 700; color: var(--dr-blue);">50만원</span>
                         </div>
                         <ul style="margin: 0; padding-left: 20px; display: grid; gap: 6px;">
-                            <li style="font-size: 15px; color: var(--text-gray); line-height: 1.6;">도메인, 웹 서버 호스팅, SSL보안인증서 설치</li>
-                            <li style="font-size: 15px; color: var(--text-gray); line-height: 1.6;">월 최대 3회 이미지 제작, 작은 페이지 변경건 대응</li>
+                            <li style="font-size: 14px; color: var(--text-gray); line-height: 1.6;">도메인, 웹 서버 호스팅, SSL보안인증서 설치</li>
+                            <li style="font-size: 14px; color: var(--text-gray); line-height: 1.6;">월 최대 3회 이미지 제작, 작은 페이지 변경건 대응</li>
                         </ul>
                     </div>
                     <div class="maintenance-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
@@ -3014,12 +3356,12 @@
                 <div class="founders-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; max-width: 900px; margin: 0 auto;">
                     <!-- 고우균 대표 -->
                     <div style="text-align: center;">
-                        <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #609FFF 0%, #4A80E2 100%); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(96,159,255,0.3);">
-                            <div style="font-size: 48px; color: white; font-weight: 700;">고</div>
+                        <div style="width: 90px; height: 90px; background: linear-gradient(135deg, #609FFF 0%, #4A80E2 100%); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(96,159,255,0.3);">
+                            <div style="font-size: 36px; color: white; font-weight: 700;">고</div>
                         </div>
-                        <h4 style="font-size: 24px; font-weight: 700; color: #1a202c; margin-bottom: 8px;">고우균</h4>
-                        <div style="font-size: 15px; color: #609FFF; font-weight: 600; margin-bottom: 20px;">CEO</div>
-                        <p style="font-size: 14px; color: #64748b; line-height: 1.7;">
+                        <h4 style="font-size: 20px; font-weight: 700; color: #1a202c; margin-bottom: 6px;">고우균</h4>
+                        <div style="font-size: 13px; color: #609FFF; font-weight: 600; margin-bottom: 16px;">CEO</div>
+                        <p style="font-size: 12px; color: #64748b; line-height: 1.6;">
                             삼성전자 SW 엔지니어<br>
                             Columbia Univ. Computer Engineering (석사)<br>
                             경희대 치의학전문대학원 (석사)<br>
@@ -3029,12 +3371,12 @@
 
                     <!-- 이은솔 대표 -->
                     <div style="text-align: center;">
-                        <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #609FFF 0%, #4A80E2 100%); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(96,159,255,0.3);">
-                            <div style="font-size: 48px; color: white; font-weight: 700;">이</div>
+                        <div style="width: 90px; height: 90px; background: linear-gradient(135deg, #609FFF 0%, #4A80E2 100%); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(96,159,255,0.3);">
+                            <div style="font-size: 36px; color: white; font-weight: 700;">이</div>
                         </div>
-                        <h4 style="font-size: 24px; font-weight: 700; color: #1a202c; margin-bottom: 8px;">이은솔</h4>
-                        <div style="font-size: 15px; color: #609FFF; font-weight: 600; margin-bottom: 20px;">CEO</div>
-                        <p style="font-size: 14px; color: #64748b; line-height: 1.7;">
+                        <h4 style="font-size: 20px; font-weight: 700; color: #1a202c; margin-bottom: 6px;">이은솔</h4>
+                        <div style="font-size: 13px; color: #609FFF; font-weight: 600; margin-bottom: 16px;">CEO</div>
+                        <p style="font-size: 12px; color: #64748b; line-height: 1.6;">
                             대한의사협회 41대 자문위원<br>
                             서울아산병원 영상의학과 전문의<br>
                             4차산업혁명위원회 혁신위원<br>
