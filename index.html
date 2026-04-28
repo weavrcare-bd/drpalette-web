@@ -1305,7 +1305,7 @@
             .benefits-grid,
             .page-examples-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+                grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
                 gap: 20px !important;
                 overflow-x: auto !important;
                 -webkit-overflow-scrolling: touch !important;
@@ -1609,10 +1609,13 @@
             .pain-grid > div,
             .advantage-grid > div,
             .benefits-grid > div {
-                flex: 0 0 280px !important;
-                min-width: 280px !important;
-                max-width: 280px !important;
+                flex: 0 0 220px !important;
+                min-width: 220px !important;
+                max-width: 220px !important;
                 padding: 20px 18px !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: keep-all !important;
             }
 
             /* ===== 레퍼런스 그리드 - 가로 스크롤 ===== */
@@ -1739,7 +1742,7 @@
 
             .specialty-cards {
                 display: grid !important;
-                grid-template-columns: repeat(3, 1fr) !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 12px !important;
                 width: 100% !important;
                 margin: 0 !important;
@@ -1761,10 +1764,9 @@
             }
 
             .specialty-features {
-                display: flex !important;
-                flex-direction: column !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 16px !important;
-                grid-template-columns: 1fr !important;
             }
 
             .specialty-features > div {
@@ -2191,13 +2193,22 @@
                 font-size: 11px !important;
             }
 
-            /* 가로 스크롤 가능한 그리드 - 480px */
+            /* 가로 스크롤 가능한 그리드 - 480px: 2열로 변경 */
             .pain-grid,
-            .benefits-grid,
+            .benefits-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
+                gap: 12px !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                padding-bottom: 8px !important;
+            }
+
+            /* page-examples-grid도 2열 유지 */
             .page-examples-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(240px, 1fr)) !important;
-                gap: 16px !important;
+                grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
+                gap: 12px !important;
                 overflow-x: auto !important;
                 -webkit-overflow-scrolling: touch !important;
                 padding-bottom: 8px !important;
@@ -2344,7 +2355,7 @@
 
             .specialty-cards {
                 display: grid !important;
-                grid-template-columns: repeat(3, 1fr) !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 8px !important;
             }
 
@@ -2376,6 +2387,30 @@
             .specialty-banner > div:first-of-type > div:first-child {
                 font-size: 10px !important;
                 margin-bottom: 12px !important;
+            }
+
+            .specialty-features {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(240px, 1fr)) !important;
+                gap: 16px !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                padding-bottom: 10px !important;
+            }
+
+            /* 스크롤바 스타일 */
+            .specialty-features::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .specialty-features::-webkit-scrollbar-track {
+                background: rgba(96,159,255,0.1);
+                border-radius: 3px;
+            }
+
+            .specialty-features::-webkit-scrollbar-thumb {
+                background: rgba(96,159,255,0.4);
+                border-radius: 3px;
             }
 
             .specialty-features > div {
