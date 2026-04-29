@@ -1602,74 +1602,84 @@
                 letter-spacing: -0.5px !important;
             }
 
-            /* ROI 카드 - 가로 스크롤 */
+            /* ROI 카드 - 1x3 그리드 */
             .company-impact-grid {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                gap: 16px !important;
-                margin: 0 -20px 60px -20px !important;
-                padding: 0 20px 16px 20px !important;
-                grid-template-columns: none !important;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(96,159,255,0.4) rgba(96,159,255,0.1);
-            }
-
-            .company-impact-grid::-webkit-scrollbar {
-                height: 6px;
-            }
-
-            .company-impact-grid::-webkit-scrollbar-track {
-                background: rgba(96,159,255,0.1);
-                border-radius: 3px;
-            }
-
-            .company-impact-grid::-webkit-scrollbar-thumb {
-                background: rgba(96,159,255,0.4);
-                border-radius: 3px;
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
+                margin-bottom: 32px !important;
+                padding: 0 !important;
             }
 
             .company-impact-grid > div {
-                flex: 0 0 240px !important;
-                min-width: 240px !important;
-                max-width: 240px !important;
-                padding: var(--pad-mobile-md) !important;
+                flex: none !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                padding: 24px 12px !important;
             }
 
-            /* 프로덕트 그리드 */
+            .company-impact-grid > div > div:first-child {
+                font-size: 32px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .company-impact-grid > div p:nth-of-type(1) {
+                font-size: 13px !important;
+                margin-bottom: 4px !important;
+                word-break: keep-all !important;
+                line-height: 1.3 !important;
+            }
+
+            .company-impact-grid > div p:nth-of-type(2) {
+                font-size: 11px !important;
+                word-break: keep-all !important;
+                line-height: 1.4 !important;
+            }
+
+            /* 프로덕트 그리드 - 부모 컨테이너 패딩 축소 */
+            .product-section {
+                padding: 28px 20px !important;
+            }
+
             .product-grid {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 20px !important;
+                gap: 12px !important;
             }
 
             .product-grid::before {
                 content: none;
             }
 
+            .product-grid > div {
+                padding: 0 !important;
+                min-width: 0 !important;
+            }
+
             .product-grid > div > div {
-                padding: 16px 32px !important;
+                padding: 20px 12px !important;
             }
 
             .product-grid > div > div > div:first-child {
                 margin-bottom: 10px !important;
+                font-size: 11px !important;
+                letter-spacing: 1px !important;
             }
 
             .product-grid h4 {
-                font-size: 22px !important;
-                margin-bottom: 14px !important;
+                font-size: 18px !important;
+                margin-bottom: 10px !important;
             }
 
             .product-grid p {
-                font-size: 14px !important;
-                line-height: 1.4 !important;
-                margin-bottom: 14px !important;
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+                margin-bottom: 12px !important;
+                word-break: keep-all !important;
             }
 
             .product-grid a {
-                font-size: 13px !important;
+                font-size: 12px !important;
             }
 
             /* 공동대표 그리드 */
@@ -1685,12 +1695,6 @@
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 16px !important;
                 margin-top: 40px !important;
-            }
-
-            /* 회사 영향력 - 2열로 변경 */
-            .company-impact-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 20px !important;
             }
 
             /* 카드 아이템 - 가로 스크롤용 (현재는 2열 그리드라 이 규칙은 사용 안 됨) */
@@ -1800,25 +1804,28 @@
 
             .specialty-cards {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 12px !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
                 width: 100% !important;
                 margin: 0 !important;
                 padding: 0 !important;
             }
 
             .specialty-cards > div {
-                padding: 16px 12px !important;
+                padding: 16px 8px !important;
                 font-size: 12px !important;
+                min-width: 0 !important;
             }
 
             .specialty-cards > div > div:first-child {
-                font-size: 28px !important;
+                font-size: 26px !important;
                 margin-bottom: 6px !important;
             }
 
             .specialty-cards > div > div:last-child {
-                font-size: 12px !important;
+                font-size: 11px !important;
+                word-break: keep-all !important;
+                line-height: 1.4 !important;
             }
 
             .specialty-features {
@@ -2240,7 +2247,8 @@
             }
 
             div[style*="padding: 50px 60px"],
-            div[style*="padding: 50px 40px"] {
+            div[style*="padding: 50px 40px"],
+            div[style*="padding: 50px;"] {
                 padding: var(--pad-mobile-md) !important;
             }
 
@@ -2394,12 +2402,26 @@
                 max-width: 240px !important;
             }
 
-            /* 회사 소개 ROI 카드 더 작게 */
+            /* 회사 소개 ROI 카드 - 1x3 그리드 (소형 모바일) */
             .company-impact-grid > div {
-                flex: 0 0 220px !important;
-                min-width: 220px !important;
-                max-width: 220px !important;
-                padding: 28px 20px !important;
+                flex: none !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                padding: 18px 6px !important;
+            }
+
+            .company-impact-grid > div > div:first-child {
+                font-size: 24px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .company-impact-grid > div p:nth-of-type(1) {
+                font-size: 11px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .company-impact-grid > div p:nth-of-type(2) {
+                font-size: 9px !important;
             }
 
             .company-vision {
@@ -2468,22 +2490,25 @@
 
             .specialty-cards {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 6px !important;
             }
 
             .specialty-cards > div {
-                padding: 12px 8px !important;
-                border-radius: 12px !important;
+                padding: 10px 4px !important;
+                border-radius: 10px !important;
+                min-width: 0 !important;
             }
 
             .specialty-cards > div > div:first-child {
-                font-size: 20px !important;
+                font-size: 18px !important;
                 margin-bottom: 4px !important;
             }
 
             .specialty-cards > div > div:last-child {
-                font-size: 10px !important;
+                font-size: 9px !important;
+                word-break: keep-all !important;
+                line-height: 1.3 !important;
             }
 
             .specialty-banner > div:first-of-type h3 {
@@ -2666,31 +2691,37 @@
             }
 
             /* 프로덕트 섹션 480px */
+            .product-section {
+                padding: 22px 14px !important;
+            }
+
             .product-grid {
-                gap: 12px !important;
+                gap: 8px !important;
             }
 
             .product-grid > div > div {
-                padding: 12px 28px !important;
+                padding: 16px 8px !important;
             }
 
             .product-grid > div > div > div:first-child {
                 margin-bottom: 8px !important;
+                font-size: 9px !important;
+                letter-spacing: 0.5px !important;
             }
 
             .product-grid h4 {
-                font-size: 18px !important;
-                margin-bottom: 10px !important;
+                font-size: 15px !important;
+                margin-bottom: 8px !important;
             }
 
             .product-grid p {
-                font-size: 12px !important;
-                line-height: 1.3 !important;
+                font-size: 11px !important;
+                line-height: 1.4 !important;
                 margin-bottom: 10px !important;
             }
 
             .product-grid a {
-                font-size: 11px !important;
+                font-size: 10px !important;
             }
 
             /* ===== 전역 상위 컨테이너 padding 조정 (480px) ===== */
@@ -2703,6 +2734,7 @@
 
             div[style*="padding: 50px 60px"],
             div[style*="padding: 50px 40px"],
+            div[style*="padding: 50px;"],
             div[style*="padding: 36px 28px"] {
                 padding: var(--pad-mobile-sm) !important;
             }
@@ -2742,10 +2774,10 @@
                 font-size: 13px !important;
             }
 
-            /* 회사 영향력 - 1열로 변경 */
+            /* 회사 영향력 - 1x3 그리드 유지 */
             .company-impact-grid {
-                grid-template-columns: 1fr !important;
-                gap: 16px !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 6px !important;
             }
 
             .founders-grid {
@@ -3421,7 +3453,7 @@
             </div>
 
             <!-- 프로덕트 -->
-            <div style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.12); border-radius: 20px; padding: 50px; margin-bottom: 60px;">
+            <div class="product-section" style="background: var(--bg-white); border: 1px solid rgba(96,159,255,0.12); border-radius: 20px; padding: 50px; margin-bottom: 60px;">
                 <h3 style="font-size: 24px; font-weight: 600; color: var(--text-dark); margin-bottom: 32px; text-align: center;">위버케어의 핵심 프로덕트</h3>
                 <div class="product-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
                     <div style="background: linear-gradient(135deg, rgba(96,159,255,0.08), rgba(222,222,236,0.15)); border-radius: 16px; padding: 40px; text-align: center;">
