@@ -1407,8 +1407,7 @@
 
             /* ===== 가로 스크롤 가능한 그리드 ===== */
             .pain-grid,
-            .benefits-grid,
-            .page-examples-grid {
+            .benefits-grid {
                 display: grid !important;
                 grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
                 gap: 20px !important;
@@ -1416,28 +1415,47 @@
                 -webkit-overflow-scrolling: touch !important;
                 padding-bottom: 10px !important;
             }
-
+            
+            /* page-examples-grid는 부모 박스 안에 들어가는 그리드라 가로 스크롤 부적합 → 단순 2열 고정 */
+            .page-examples-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+                overflow: visible !important;
+                padding-bottom: 0 !important;
+            }
+            .page-examples-grid > div {
+                min-width: 0 !important;
+                padding: 18px 14px !important;
+                word-break: keep-all !important;
+            }
+            .page-examples-grid > div > div:first-child {
+                font-size: 12px !important;
+                margin-bottom: 8px !important;
+                line-height: 1.4 !important;
+            }
+            .page-examples-grid > div > div:nth-child(2) {
+                font-size: 12px !important;
+                line-height: 1.6 !important;
+            }
+            
             /* 그리드 스크롤바 스타일 */
             .pain-grid::-webkit-scrollbar,
-            .benefits-grid::-webkit-scrollbar,
-            .page-examples-grid::-webkit-scrollbar {
+            .benefits-grid::-webkit-scrollbar {
                 height: 6px;
             }
-
+            
             .pain-grid::-webkit-scrollbar-track,
-            .benefits-grid::-webkit-scrollbar-track,
-            .page-examples-grid::-webkit-scrollbar-track {
+            .benefits-grid::-webkit-scrollbar-track {
                 background: rgba(96,159,255,0.1);
                 border-radius: 3px;
             }
-
+            
             .pain-grid::-webkit-scrollbar-thumb,
-            .benefits-grid::-webkit-scrollbar-thumb,
-            .page-examples-grid::-webkit-scrollbar-thumb {
+            .benefits-grid::-webkit-scrollbar-thumb {
                 background: var(--dr-blue);
                 border-radius: 3px;
             }
-
             /* advantage-grid는 그리드 유지 */
             .advantage-grid {
                 display: grid !important;
@@ -1872,38 +1890,39 @@
             }
 
             /* ===== 유지보수 비용 그리드 ===== */
+            /* 모바일에서는 외곽 그리드를 1열로 펴서 가로폭 확보 */
             .maintenance-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(250px, 1fr)) !important;
+                grid-template-columns: 1fr !important;
                 gap: 16px !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
+                overflow: visible !important;
                 margin: 0 !important;
-                padding: 0 0 10px 0 !important;
+                padding: 0 !important;
             }
-
+            
             .maintenance-grid > div {
                 width: 100% !important;
                 max-width: 100% !important;
-                min-width: 250px !important;
+                min-width: 0 !important;
                 overflow: hidden !important;
             }
-
+            
+            /* 내부 2열은 minmax 제거 → 부모 폭에 맞춰 자동 축소 */
             .global-maintenance-grid,
             .chart-integration-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(110px, 1fr)) !important;
+                grid-template-columns: 1fr 1fr !important;
                 gap: 10px !important;
                 overflow: visible !important;
                 margin: 0 !important;
                 padding: 0 !important;
             }
-
+            
             .global-maintenance-grid > div,
             .chart-integration-grid > div {
                 width: 100% !important;
                 max-width: 100% !important;
-                min-width: 110px !important;
+                min-width: 0 !important;
                 padding: 14px 10px !important;
                 overflow-wrap: break-word !important;
                 word-break: keep-all !important;
@@ -2322,14 +2341,17 @@
                 padding-bottom: 8px !important;
             }
 
-            /* page-examples-grid도 2열 유지 */
+            /* page-examples-grid - 부모 박스 안에 그대로 들어가도록 단순 2열 */
             .page-examples-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
-                gap: 12px !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                padding-bottom: 8px !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+                overflow: visible !important;
+                padding-bottom: 0 !important;
+            }
+            .page-examples-grid > div {
+                padding: 14px 10px !important;
+                min-width: 0 !important;
             }
 
             /* advantage-grid는 그리드 유지 */
@@ -2600,10 +2622,6 @@
                 min-width: 220px !important;
             }
 
-            .page-examples-grid > div {
-                flex: 0 0 240px !important;
-                min-width: 240px !important;
-            }
 
             .price-detail-top > div {
                 padding: var(--pad-mobile-xs) !important;
@@ -2759,28 +2777,40 @@
                 font-size: 16px !important;
             }
 
-            /* 유지보수 섹션 - 480px 최적화 (1열로 변경) */
+            /* 유지보수 섹션 - 480px 최적화 (외곽 1열 유지, 내부 2열은 minmax 제거) */
             .maintenance-grid {
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
-
+            
             .maintenance-grid > div {
-                min-width: 100% !important;
+                min-width: 0 !important;
                 max-width: 100% !important;
             }
-
+            
             .global-maintenance-grid,
             .chart-integration-grid {
-                grid-template-columns: repeat(2, minmax(140px, 1fr)) !important;
-                gap: 12px !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
             }
-
+            
             .global-maintenance-grid > div,
             .chart-integration-grid > div {
-                min-width: 140px !important;
-                padding: 16px 12px !important;
-                font-size: 13px !important;
+                min-width: 0 !important;
+                padding: 12px 8px !important;
+                font-size: 12px !important;
+            }
+            
+            .global-maintenance-grid > div > div:first-child,
+            .chart-integration-grid > div > div:first-child {
+                font-size: 12px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .global-maintenance-grid > div > div:nth-child(2),
+            .chart-integration-grid > div > div:nth-child(2) {
+                font-size: 11px !important;
+                line-height: 1.5 !important;
             }
 
             /* 회사 영향력 - 1x3 그리드 유지 */
